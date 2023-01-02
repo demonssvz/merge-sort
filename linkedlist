@@ -1,0 +1,86 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+// Inserting node to the end of the list
+
+struct node
+{
+   int data;
+   struct node *link;
+};
+struct node *temp, *start=NULL, *newnode;
+//revesing the linked list
+struct node *reverse(struct node* start)
+{
+    struct node *previous = NULL;
+    struct node *next = NULL;
+    while(start)
+    {
+        next = start->link;
+        start->link = previous;
+        previous = start;
+        start = next;
+        
+    }
+    start = previous;
+     temp=start;
+      printf("the revesed elements are:");
+    while(temp)
+    {
+    printf("%d ",temp->data);
+      temp=temp->link;
+    }
+}
+//for displaying
+void disp(){
+     
+    temp = start ;
+    printf("The elements in Linked list:  ");
+    while(temp != NULL)
+    {
+        printf("%d  ",temp->data);
+        
+     temp = temp->link ;
+    }
+    
+    printf("\n\n");
+ }
+
+void main()
+{
+
+   
+   int x;
+
+   while(1)
+   {
+      printf("Enter the data \n"); scanf("%d",&x);
+      if (x == -1) break;
+
+      newnode=(struct node *)malloc(sizeof(struct node)); //create newnode and initialize
+      newnode->data=x; newnode->link=NULL;
+
+      if (start == NULL)
+      start = newnode;  
+      else
+      {
+      
+       temp = start;
+
+       while (temp->link != NULL)
+       temp=temp->link;
+
+       temp->link = newnode;  
+      }
+    }
+//we can also use disp()
+    printf("The list contents are\n");
+    temp=start;
+    while(temp)
+    {
+      printf("%d\n", temp->data);
+      temp=temp->link;
+    }
+    start = reverse(start);
+    
+}
